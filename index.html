@@ -1,956 +1,356 @@
 <!DOCTYPE html>
+
 <html lang="ms">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>EGK × KPM EduTech — Portal Pembentangan Rasmi 2026</title>
+<title>Portal EGK × KPM — Telah Dipindahkan</title>
+<meta http-equiv="refresh" content="12;url=https://egkhor.com.my/gov/kpm">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Playfair+Display:wght@700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
 :root{
-  --navy:    #0A1F5C;
-  --royal:   #1042B0;
-  --blue:    #1565C0;
-  --sky:     #E8F4FD;
-  --gold:    #B8860B;
-  --gold2:   #D4A017;
-  --amber:   #F59E0B;
-  --cream:   #FAFAF7;
-  --white:   #FFFFFF;
-  --ink:     #1A1A2E;
-  --muted:   #5A6A82;
-  --border:  #D1DBE8;
-  --accent:  #DC2626;
-  --shelf:   #2D1B69;
+  --navy:#0A1F5C;
+  --royal:#1042B0;
+  --gold:#D4A017;
+  --gold-dim:rgba(212,160,23,.18);
+  --white:#FFFFFF;
 }
 *{margin:0;padding:0;box-sizing:border-box;}
-html{scroll-behavior:smooth;}
-body{font-family:'Plus Jakarta Sans',sans-serif;background:#080C1A;color:var(--ink);overflow-x:hidden;}
+html,body{height:100%;font-family:'Plus Jakarta Sans',sans-serif;overflow:hidden;}
 
-/* ─── ANIMATED STAR FIELD ─── */
-.starfield{
-  position:fixed;inset:0;z-index:0;pointer-events:none;
-  background:radial-gradient(ellipse at 20% 50%,#0A1F5C22 0%,transparent 60%),
-             radial-gradient(ellipse at 80% 20%,#1042B011 0%,transparent 50%),
-             #080C1A;
+/* ── BACKGROUND ── */
+body{
+background:#060D1C;
+display:flex;flex-direction:column;align-items:center;justify-content:center;
+min-height:100vh;position:relative;
 }
+
+/* Layered radial atmosphere */
+body::before{
+content:’’;position:fixed;inset:0;pointer-events:none;
+background:
+radial-gradient(ellipse 80% 60% at 15% 50%, rgba(10,31,92,.55) 0%, transparent 65%),
+radial-gradient(ellipse 60% 50% at 85% 30%, rgba(16,66,176,.25) 0%, transparent 60%),
+radial-gradient(ellipse 40% 40% at 50% 100%, rgba(212,160,23,.06) 0%, transparent 60%);
+}
+
+/* Fine grid */
+body::after{
+content:’’;position:fixed;inset:0;pointer-events:none;
+background-image:
+linear-gradient(rgba(255,255,255,.018) 1px, transparent 1px),
+linear-gradient(90deg, rgba(255,255,255,.018) 1px, transparent 1px);
+background-size:56px 56px;
+}
+
+/* ── STARS ── */
+.stars{position:fixed;inset:0;pointer-events:none;z-index:0;}
 .star{
-  position:absolute;border-radius:50%;background:white;
-  animation:twinkle var(--d,3s) ease-in-out infinite var(--delay,0s);
+position:absolute;border-radius:50%;background:#fff;
+animation:twinkle var(–d,3s) ease-in-out infinite var(–dl,0s);
 }
-@keyframes twinkle{0%,100%{opacity:.15;transform:scale(1);}50%{opacity:.9;transform:scale(1.4);}}
+@keyframes twinkle{0%,100%{opacity:.1;transform:scale(1);}50%{opacity:.85;transform:scale(1.5);}}
 
-/* ─── FLOATING PARTICLES ─── */
-.particles{position:fixed;inset:0;z-index:0;pointer-events:none;overflow:hidden;}
-.particle{
-  position:absolute;border-radius:50%;
-  background:radial-gradient(circle,rgba(212,160,23,.6),transparent);
-  animation:drift var(--pd,20s) linear infinite var(--pdelay,0s);
+/* Horizontal scan line */
+.scan{
+position:fixed;top:0;left:0;right:0;height:2px;
+background:linear-gradient(90deg,transparent,rgba(212,160,23,.35),transparent);
+animation:scanDown 8s linear infinite;pointer-events:none;z-index:1;
 }
-@keyframes drift{
-  0%{transform:translateY(100vh) translateX(0) scale(0);opacity:0;}
-  10%{opacity:1;}
-  90%{opacity:.5;}
-  100%{transform:translateY(-10vh) translateX(var(--dx,40px)) scale(1.5);opacity:0;}
-}
+@keyframes scanDown{0%{top:-2px;}100%{top:100%}}
 
-/* ─── App Icon ─── */
-.info-glass-icon img {
-  width: 32px;      /* adjust as needed */
-  height: 32px;
-  object-fit: contain;
-  display: block;
+/* ── CARD ── */
+.card{
+position:relative;z-index:10;
+width:min(680px, 92vw);
+background:linear-gradient(145deg,rgba(255,255,255,.045),rgba(255,255,255,.015));
+border:1px solid rgba(212,160,23,.22);
+border-radius:24px;
+overflow:hidden;
+box-shadow:0 48px 96px rgba(0,0,0,.65), 0 0 0 1px rgba(255,255,255,.04);
+animation:riseIn 1s cubic-bezier(.22,1,.36,1) both;
 }
+@keyframes riseIn{from{opacity:0;transform:translateY(36px) scale(.97);}to{opacity:1;transform:translateY(0) scale(1);}}
 
-/* ─── Footer Hyperlink ─── */
-.ff-line a {
-  display: block;
-  padding: 6px 0;
-  color: #1a73e8;
-  text-decoration: none;
-  font-weight: 500;
+/* Gold top accent bar */
+.card-accent{
+height:4px;
+background:linear-gradient(90deg, var(–navy), var(–royal) 40%, var(–gold) 70%, var(–royal));
+background-size:200% 100%;
+animation:shimmerBar 4s linear infinite;
 }
+@keyframes shimmerBar{0%{background-position:0% 0%;}100%{background-position:200% 0%;}}
 
-.ff-line a:hover {
-  text-decoration: underline;
-}
+.card-body{padding:44px 48px 40px;}
 
-/* ─── CREST HEADER ─── */
-.crest-bar{
-  position:relative;z-index:100;
-  background:linear-gradient(135deg,rgba(10,31,92,.97) 0%,rgba(13,37,96,.98) 60%,rgba(16,66,176,.95) 100%);
-  padding:16px 40px;
-  display:flex;align-items:center;justify-content:space-between;
-  border-bottom:3px solid var(--gold2);
-  backdrop-filter:blur(20px);
+/* ── HEADER ROW ── */
+.header-row{
+display:flex;align-items:center;justify-content:space-between;
+margin-bottom:32px;padding-bottom:24px;
+border-bottom:1px solid rgba(255,255,255,.07);
 }
-.crest-left{display:flex;align-items:center;gap:14px;}
-.crest-logo{height:52px;border-radius:8px;filter:brightness(1.05);}
-.crest-titles{}
-.crest-main{font-family:'Playfair Display',serif;font-size:1rem;color:var(--white);font-weight:700;letter-spacing:.5px;}
-.crest-sub{font-size:.72rem;color:rgba(255,255,255,.65);margin-top:2px;letter-spacing:.8px;text-transform:uppercase;}
-.crest-right{text-align:right;}
-.crest-date{font-size:.72rem;color:rgba(255,255,255,.6);letter-spacing:.8px;text-transform:uppercase;}
-.crest-ref{font-size:.78rem;color:var(--gold2);font-weight:700;margin-top:2px;}
+.logo-group{display:flex;align-items:center;gap:14px;}
+.egk-logo{height:46px;border-radius:8px;filter:brightness(1.05) drop-shadow(0 4px 12px rgba(0,0,0,.4));}
+.logo-text{}
+.logo-name{font-family:‘Playfair Display’,serif;font-size:.95rem;color:#fff;font-weight:700;letter-spacing:.3px;}
+.logo-div{font-size:.65rem;color:rgba(255,255,255,.4);letter-spacing:1.2px;text-transform:uppercase;margin-top:2px;}
 
-/* ─── STICKY NAV ─── */
-.sticky-nav{
-  position:sticky;top:0;z-index:900;
-  background:rgba(8,12,26,.96);backdrop-filter:blur(20px);
-  border-bottom:1px solid rgba(212,160,23,.2);
-  padding:0 28px;
+/* Government seal image */
+.seal-img{
+height:52px;
+filter:brightness(1.1) drop-shadow(0 4px 16px rgba(212,160,23,.3));
+animation:sealPulse 3s ease-in-out infinite;
 }
-.sticky-nav-inner{max-width:1100px;margin:0 auto;display:flex;gap:0;overflow-x:auto;}
-.snav-link{
-  padding:14px 16px;font-size:.78rem;font-weight:700;color:rgba(255,255,255,.5);
-  text-decoration:none;white-space:nowrap;border-bottom:2px solid transparent;
-  transition:all .2s;display:block;
-}
-.snav-link:hover,.snav-link.active{color:var(--gold2);border-bottom-color:var(--gold2);}
+@keyframes sealPulse{0%,100%{filter:brightness(1.1) drop-shadow(0 4px 16px rgba(212,160,23,.3));}50%{filter:brightness(1.2) drop-shadow(0 4px 24px rgba(212,160,23,.5));}}
 
-/* ─── HERO ─── */
-#hero{
-  position:relative;z-index:10;
-  min-height:92vh;
-  display:flex;flex-direction:column;align-items:center;justify-content:center;
-  text-align:center;padding:80px 40px 60px;overflow:hidden;
+/* ── CLASSIFICATION BADGE ── */
+.classif-row{display:flex;align-items:center;gap:10px;margin-bottom:20px;flex-wrap:wrap;}
+.classif-badge{
+display:inline-flex;align-items:center;gap:6px;
+background:rgba(212,160,23,.1);border:1px solid rgba(212,160,23,.4);
+color:var(–gold);font-size:.65rem;font-weight:800;
+letter-spacing:2px;text-transform:uppercase;padding:5px 14px;border-radius:4px;
 }
-#hero::before{
-  content:'';position:absolute;inset:0;
-  background-image:linear-gradient(rgba(255,255,255,.02) 1px,transparent 1px),
-                   linear-gradient(90deg,rgba(255,255,255,.02) 1px,transparent 1px);
-  background-size:52px 52px;pointer-events:none;
-}
-.hero-badge{
-  display:inline-flex;align-items:center;gap:8px;
-  border:1px solid rgba(212,160,23,.5);background:rgba(212,160,23,.1);
-  color:var(--gold2);font-size:.7rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;
-  padding:6px 20px;border-radius:4px;margin-bottom:24px;
-  animation:fadeSlideDown .8s ease both;
-}
-.hero-kpm{
-  font-size:.82rem;color:rgba(255,255,255,.5);letter-spacing:1.5px;text-transform:uppercase;
-  margin-bottom:12px;animation:fadeSlideDown .8s ease .1s both;
-}
-.hero-title{
-  font-family:'Playfair Display',serif;
-  font-size:clamp(2.2rem,5.5vw,4rem);color:var(--white);line-height:1.08;
-  margin-bottom:12px;animation:fadeSlideDown .8s ease .2s both;
-}
-.hero-title span{color:#7DD3FC;}
-.hero-sub{
-  font-size:clamp(.92rem,2vw,1.2rem);color:rgba(255,255,255,.65);
-  margin-bottom:10px;font-weight:500;animation:fadeSlideDown .8s ease .3s both;
-}
-.hero-desc{
-  font-size:.85rem;color:rgba(255,255,255,.4);letter-spacing:.5px;
-  max-width:600px;margin:0 auto 36px;animation:fadeSlideDown .8s ease .4s both;
-}
-.hero-mascots{
-  display:flex;justify-content:center;align-items:flex-end;gap:28px;
-  margin-top:8px;animation:fadeSlideDown .9s ease .5s both;
-}
-.mascot-aida{
-  width:clamp(90px,12vw,130px);
-  filter:drop-shadow(0 16px 32px rgba(125,211,252,.25));
-  animation:floatA 4s ease-in-out infinite;
-}
-.mascot-mushi{
-  width:clamp(70px,10vw,105px);
-  filter:drop-shadow(0 16px 32px rgba(212,160,23,.3));
-  animation:floatB 4.5s ease-in-out infinite .8s;
-}
-@keyframes floatA{0%,100%{transform:translateY(0) rotate(-2deg);}50%{transform:translateY(-14px) rotate(2deg);}}
-@keyframes floatB{0%,100%{transform:translateY(0) rotate(2deg);}50%{transform:translateY(-10px) rotate(-2deg);}}
-@keyframes fadeSlideDown{from{opacity:0;transform:translateY(-20px);}to{opacity:1;transform:translateY(0);}}
+.classif-ref{font-size:.65rem;color:rgba(255,255,255,.28);letter-spacing:1px;font-family:monospace;}
 
-.hero-scroll{
-  position:absolute;bottom:30px;left:50%;transform:translateX(-50%);
-  color:rgba(255,255,255,.3);font-size:.72rem;letter-spacing:2px;text-transform:uppercase;
-  display:flex;flex-direction:column;align-items:center;gap:8px;
-  animation:bounce 2s ease-in-out infinite;
-}
-.hero-scroll::after{content:'';width:1px;height:36px;background:linear-gradient(rgba(255,255,255,.3),transparent);}
-@keyframes bounce{0%,100%{transform:translateX(-50%) translateY(0);}50%{transform:translateX(-50%) translateY(6px);}}
+/* ── MAIN HEADLINE ── */
+.notice-icon{font-size:2.6rem;margin-bottom:16px;display:block;
+animation:iconPop .8s cubic-bezier(.34,1.56,.64,1) .3s both;}
+@keyframes iconPop{from{opacity:0;transform:scale(.4);}to{opacity:1;transform:scale(1);}}
 
-/* ─── HERO STATS STRIP ─── */
-.stats-strip{
-  position:relative;z-index:10;
-  background:linear-gradient(90deg,rgba(10,31,92,.95),rgba(16,66,176,.9));
-  border-top:1px solid rgba(212,160,23,.3);border-bottom:1px solid rgba(212,160,23,.3);
-  padding:20px 40px;
-  display:flex;justify-content:center;gap:0;flex-wrap:wrap;
+.notice-title{
+font-family:‘Playfair Display’,serif;
+font-size:clamp(1.5rem,4vw,2.1rem);
+color:#fff;line-height:1.15;margin-bottom:10px;
+animation:fadeUp .7s ease .4s both;
 }
-.stat-pill{
-  padding:12px 36px;text-align:center;
-  border-right:1px solid rgba(255,255,255,.1);
-}
-.stat-pill:last-child{border-right:none;}
-.stat-n{font-family:'Playfair Display',serif;font-size:2rem;color:var(--gold2);display:block;}
-.stat-l{font-size:.72rem;color:rgba(255,255,255,.6);text-transform:uppercase;letter-spacing:.8px;margin-top:2px;}
+.notice-title span{color:#7DD3FC;}
 
-/* ─── SECTION WRAPPER ─── */
-.section-wrap{max-width:1100px;margin:0 auto;padding:0 32px;}
-.section-divider{height:1px;background:linear-gradient(90deg,transparent,rgba(212,160,23,.2),transparent);}
+.notice-sub{
+font-size:.9rem;color:rgba(255,255,255,.55);line-height:1.75;
+margin-bottom:28px;max-width:520px;
+animation:fadeUp .7s ease .5s both;
+}
+.notice-sub strong{color:rgba(255,255,255,.8);}
+@keyframes fadeUp{from{opacity:0;transform:translateY(14px);}to{opacity:1;transform:translateY(0);}}
 
-/* ─── SECTION HEADING ─── */
-.sec-num{
-  display:inline-flex;align-items:center;gap:10px;
-  font-size:.7rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;
-  color:var(--gold2);margin-bottom:10px;
+/* ── NEW URL BOX ── */
+.url-box{
+background:rgba(16,66,176,.15);
+border:1px solid rgba(16,66,176,.4);
+border-left:4px solid var(–royal);
+border-radius:10px;padding:18px 22px;
+margin-bottom:28px;
+display:flex;align-items:center;gap:16px;
+animation:fadeUp .7s ease .6s both;
 }
-.sec-num::before{content:'';width:20px;height:1.5px;background:var(--gold2);}
-.sec-heading{
-  font-family:'Playfair Display',serif;
-  font-size:clamp(1.6rem,3vw,2.5rem);color:var(--white);line-height:1.2;margin-bottom:14px;
-}
-.sec-heading span{color:#7DD3FC;}
-.sec-lead{font-size:.95rem;color:rgba(255,255,255,.6);line-height:1.85;max-width:720px;margin-bottom:28px;}
-
-/* ─── LIBRARY SECTION (dark glass) ─── */
-.library-section{
-  position:relative;z-index:10;
-  padding:72px 0;
-  background:linear-gradient(180deg,#08101E 0%,#0D1530 50%,#080C1A 100%);
-}
-.library-section.alt{
-  background:linear-gradient(180deg,#060D1C 0%,#0A1228 50%,#060D1C 100%);
+.url-icon{font-size:1.4rem;flex-shrink:0;}
+.url-label{font-size:.67rem;color:rgba(255,255,255,.35);letter-spacing:1.2px;text-transform:uppercase;margin-bottom:4px;}
+.url-value{
+font-family:monospace;font-size:.95rem;color:#93C5FD;font-weight:700;
+word-break:break-all;letter-spacing:.3px;
 }
 
-/* ─── YEAR STRIP ─── */
-.year-strip{
-  display:flex;align-items:center;gap:10px;
-  margin-bottom:36px;flex-wrap:wrap;
+/* ── COUNTDOWN ── */
+.countdown-row{
+display:flex;align-items:center;gap:10px;margin-bottom:32px;
+animation:fadeUp .7s ease .65s both;
 }
-.year-chip{
-  background:linear-gradient(135deg,rgba(212,160,23,.15),rgba(212,160,23,.05));
-  border:1px solid rgba(212,160,23,.4);
-  color:var(--gold2);font-size:.72rem;font-weight:800;
-  padding:5px 14px;border-radius:4px;letter-spacing:1.5px;text-transform:uppercase;
+.countdown-bar-wrap{
+flex:1;height:6px;background:rgba(255,255,255,.07);border-radius:3px;overflow:hidden;
 }
-.year-line{flex:1;height:1px;background:linear-gradient(90deg,rgba(212,160,23,.3),transparent);}
+.countdown-bar{
+height:100%;background:linear-gradient(90deg,var(–royal),var(–gold));
+border-radius:3px;width:100%;
+animation:drainBar 12s linear forwards;
+}
+@keyframes drainBar{from{width:100%;}to{width:0%;}}
+.countdown-text{font-size:.72rem;color:rgba(255,255,255,.35);white-space:nowrap;letter-spacing:.5px;}
+#countdown-num{color:var(–gold);font-weight:700;}
 
-/* ─── MEETING GRID ─── */
-.meetings-grid{
-  display:grid;
-  grid-template-columns:repeat(auto-fill,minmax(300px,1fr));
-  gap:24px;
-  margin-top:8px;
+/* ── CTA BUTTON ── */
+.cta-btn{
+display:inline-flex;align-items:center;gap:10px;
+background:linear-gradient(135deg,var(–royal),#1565C0);
+color:#fff;font-size:.9rem;font-weight:700;
+padding:15px 36px;border-radius:10px;
+text-decoration:none;letter-spacing:.3px;
+border:1px solid rgba(255,255,255,.1);
+box-shadow:0 12px 32px rgba(16,66,176,.5);
+transition:all .25s;
+animation:fadeUp .7s ease .7s both;
 }
+.cta-btn:hover{
+background:linear-gradient(135deg,#1565C0,var(–royal));
+transform:translateY(-3px);
+box-shadow:0 20px 48px rgba(16,66,176,.6);
+}
+.cta-btn .arrow{
+display:inline-block;
+transition:transform .25s;
+}
+.cta-btn:hover .arrow{transform:translateX(5px);}
 
-/* ─── MEETING CARD ─── */
-.meeting-card{
-  position:relative;
-  background:linear-gradient(145deg,rgba(255,255,255,.05),rgba(255,255,255,.02));
-  border:1px solid rgba(255,255,255,.08);
-  border-radius:16px;overflow:hidden;
-  transition:transform .35s ease,box-shadow .35s ease,border-color .35s ease;
-  cursor:pointer;
-  animation:cardIn .6s ease both;
-}
-.meeting-card:hover{
-  transform:translateY(-6px);
-  box-shadow:0 24px 64px rgba(0,0,0,.5),0 0 0 1px rgba(212,160,23,.3);
-  border-color:rgba(212,160,23,.3);
-}
-@keyframes cardIn{from{opacity:0;transform:translateY(24px);}to{opacity:1;transform:translateY(0);}}
-
-/* Card top accent bar */
-.meeting-card::before{
-  content:'';position:absolute;top:0;left:0;right:0;height:3px;
-  background:var(--card-accent, linear-gradient(90deg,var(--royal),var(--blue)));
-}
-
-/* Meeting number badge */
-.meeting-num-badge{
-  position:absolute;top:14px;right:14px;
-  width:36px;height:36px;border-radius:50%;
-  background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);
-  display:flex;align-items:center;justify-content:center;
-  font-family:'Playfair Display',serif;font-size:.9rem;color:rgba(255,255,255,.5);
-  font-weight:700;
+/* ── DIVIDER ── */
+.card-divider{
+height:1px;
+background:linear-gradient(90deg,transparent,rgba(255,255,255,.07),transparent);
+margin:28px 0;
 }
 
-.meeting-card-inner{padding:22px 22px 18px;}
-
-.meeting-session-tag{
-  display:inline-flex;align-items:center;gap:6px;
-  font-size:.65rem;font-weight:800;letter-spacing:1.5px;text-transform:uppercase;
-  padding:3px 10px;border-radius:3px;margin-bottom:12px;
+/* ── FOOTER ROW ── */
+.footer-row{
+display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px;
+animation:fadeUp .7s ease .8s both;
 }
-.tag-active{background:rgba(34,197,94,.15);color:#4ADE80;border:1px solid rgba(34,197,94,.25);}
-.tag-upcoming{background:rgba(212,160,23,.12);color:#FBBF24;border:1px solid rgba(212,160,23,.25);}
-.tag-pending{background:rgba(255,255,255,.06);color:rgba(255,255,255,.4);border:1px solid rgba(255,255,255,.1);}
-
-.meeting-date-row{
-  display:flex;align-items:center;gap:8px;
-  font-size:.75rem;color:rgba(255,255,255,.4);margin-bottom:10px;letter-spacing:.5px;
-}
-.meeting-date-row .dot{width:5px;height:5px;border-radius:50%;background:rgba(212,160,23,.5);}
-
-.meeting-title{
-  font-family:'Playfair Display',serif;
-  font-size:1.1rem;color:var(--white);line-height:1.3;margin-bottom:8px;
-}
-.meeting-desc{
-  font-size:.78rem;color:rgba(255,255,255,.45);line-height:1.65;margin-bottom:16px;
+.footer-meta{font-size:.7rem;color:rgba(255,255,255,.22);letter-spacing:.6px;line-height:1.8;}
+.footer-meta strong{color:rgba(255,255,255,.38);}
+.security-pill{
+display:inline-flex;align-items:center;gap:5px;
+background:rgba(34,197,94,.08);border:1px solid rgba(34,197,94,.2);
+color:#4ADE80;font-size:.62rem;font-weight:700;
+letter-spacing:1.2px;text-transform:uppercase;padding:4px 10px;border-radius:4px;
 }
 
-/* Materials row */
-.meeting-materials{
-  display:flex;gap:8px;flex-wrap:wrap;margin-top:4px;
-}
-.mat-chip{
-  display:inline-flex;align-items:center;gap:5px;
-  font-size:.7rem;font-weight:700;padding:4px 12px;border-radius:4px;
-  text-decoration:none;transition:all .2s;
-  border:1px solid;
-}
-.mat-chip:hover{transform:translateY(-2px);}
-.mat-slides{
-  background:rgba(16,66,176,.2);color:#93C5FD;
-  border-color:rgba(16,66,176,.4);
-}
-.mat-slides:hover{background:rgba(16,66,176,.35);}
-.mat-video{
-  background:rgba(220,38,38,.15);color:#FCA5A5;
-  border-color:rgba(220,38,38,.3);
-}
-.mat-video:hover{background:rgba(220,38,38,.25);}
-.mat-doc{
-  background:rgba(34,197,94,.12);color:#86EFAC;
-  border-color:rgba(34,197,94,.25);
-}
-.mat-doc:hover{background:rgba(34,197,94,.2);}
-.mat-placeholder{
-  background:rgba(255,255,255,.04);color:rgba(255,255,255,.25);
-  border-color:rgba(255,255,255,.08);cursor:default;
-  font-style:italic;letter-spacing:.5px;
+/* ── CORNER WATERMARK ── */
+.watermark{
+position:fixed;bottom:24px;right:28px;z-index:5;
+font-size:.62rem;color:rgba(255,255,255,.1);
+letter-spacing:1.5px;text-transform:uppercase;font-family:monospace;
+writing-mode:vertical-rl;transform:rotate(180deg);
+pointer-events:none;
 }
 
-/* Card footer */
-.meeting-card-footer{
-  padding:12px 22px;
-  background:rgba(0,0,0,.2);
-  border-top:1px solid rgba(255,255,255,.05);
-  display:flex;align-items:center;justify-content:space-between;
-}
-.meeting-ref{font-size:.65rem;color:rgba(255,255,255,.25);letter-spacing:.8px;font-family:monospace;}
-.meeting-arrow{
-  font-size:.75rem;color:rgba(255,255,255,.25);
-  transition:color .2s,transform .2s;
-}
-.meeting-card:hover .meeting-arrow{color:var(--gold2);transform:translateX(4px);}
-
-/* ─── BOOKSHELF DECORATIVE ─── */
-.bookshelf-decor{
-  position:relative;z-index:10;
-  background:linear-gradient(180deg,rgba(8,12,26,0),rgba(45,27,105,.15),rgba(8,12,26,0));
-  padding:20px 0;
-  overflow:hidden;
-}
-.shelf-row{
-  display:flex;justify-content:center;gap:3px;overflow-x:auto;
-  padding:0 20px;
-}
-.book-spine{
-  width:clamp(22px,2.5vw,30px);height:clamp(110px,14vw,160px);
-  border-radius:4px 4px 0 0;
-  display:flex;align-items:center;justify-content:center;
-  position:relative;cursor:default;
-  transition:transform .3s ease;
-  box-shadow:3px 0 6px rgba(0,0,0,.3);
-}
-.book-spine:hover{transform:translateY(-10px);}
-.book-spine span{
-  font-size:.55rem;font-weight:700;color:rgba(255,255,255,.7);
-  writing-mode:vertical-lr;transform:rotate(180deg);text-transform:uppercase;
-  letter-spacing:1px;padding:4px 0;
-}
-.shelf-base{
-  height:14px;background:linear-gradient(90deg,#3D2A0C,#6B4C1A,#3D2A0C);
-  margin:0 10px;border-radius:2px;
-  box-shadow:0 4px 12px rgba(0,0,0,.5);
-}
-
-/* ─── INFO SECTION ─── */
-.info-glass{
-  background:linear-gradient(145deg,rgba(255,255,255,.04),rgba(255,255,255,.01));
-  border:1px solid rgba(255,255,255,.07);
-  border-radius:14px;padding:24px 22px;
-  border-top:3px solid;
-  transition:transform .25s ease;
-}
-.info-glass:hover{transform:translateY(-4px);}
-.info-glass-icon{font-size:1.8rem;margin-bottom:10px;}
-.info-glass-title{font-weight:800;font-size:.9rem;color:var(--white);margin-bottom:6px;}
-.info-glass-body{font-size:.8rem;color:rgba(255,255,255,.5);line-height:1.7;}
-.three-col-glass{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:28px;}
-
-/* ─── AIDA QUOTE BLOCK ─── */
-.aida-quote-wrap{
-  position:relative;z-index:10;
-  background:linear-gradient(135deg,#040F2E,#0A1F5C 50%,#1042B0);
-  border-top:1px solid rgba(212,160,23,.2);
-  border-bottom:1px solid rgba(212,160,23,.2);
-  padding:56px 40px;
-  text-align:center;overflow:hidden;
-}
-.aida-quote-wrap::before{
-  content:'';position:absolute;inset:0;
-  background-image:linear-gradient(rgba(255,255,255,.02) 1px,transparent 1px),
-                   linear-gradient(90deg,rgba(255,255,255,.02) 1px,transparent 1px);
-  background-size:44px 44px;pointer-events:none;
-}
-.aida-float-big{
-  width:clamp(80px,11vw,120px);
-  filter:drop-shadow(0 20px 40px rgba(125,211,252,.2));
-  animation:floatA 4s ease-in-out infinite;
-  margin-bottom:20px;
-}
-.quote-text{
-  font-family:'Playfair Display',serif;
-  font-size:clamp(1.1rem,2.5vw,1.7rem);color:var(--white);
-  line-height:1.5;max-width:720px;margin:0 auto 16px;
-  font-style:italic;
-}
-.quote-text span{color:#7DD3FC;}
-.quote-attr{font-size:.78rem;color:var(--gold2);font-weight:700;letter-spacing:1px;text-transform:uppercase;}
-
-/* ─── FOOTER ─── */
-.formal-footer{
-  position:relative;z-index:10;
-  background:rgba(8,12,26,.98);color:rgba(255,255,255,.6);
-  padding:36px 40px 24px;border-top:3px solid var(--gold2);
-}
-.ff-inner{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:32px;}
-.ff-title{font-size:.72rem;font-weight:800;color:rgba(255,255,255,.4);text-transform:uppercase;letter-spacing:1px;margin-bottom:8px;}
-.ff-line{font-size:.8rem;line-height:2;}
-.ff-bottom{max-width:1100px;margin:20px auto 0;border-top:1px solid rgba(255,255,255,.07);padding-top:14px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:6px;font-size:.72rem;color:rgba(255,255,255,.3);}
-
-/* ─── REVEAL ANIMATION ─── */
-.reveal{opacity:0;transform:translateY(20px);transition:all .65s ease;}
-.reveal.visible{opacity:1;transform:translateY(0);}
-
-/* ─── RESPONSIVE ─── */
-@media(max-width:768px){
-  .meetings-grid{grid-template-columns:1fr;}
-  .three-col-glass{grid-template-columns:1fr;}
-  .stats-strip{gap:0;}
-  .stat-pill{padding:10px 20px;}
-  .crest-bar{padding:12px 16px;flex-wrap:wrap;gap:10px;}
-  .ff-inner{grid-template-columns:1fr;}
-  .hero-mascots{gap:16px;}
-  #hero{padding:60px 20px 50px;}
+/* ── RESPONSIVE ── */
+@media(max-width:560px){
+.card-body{padding:30px 24px 28px;}
+.header-row{flex-direction:column;align-items:flex-start;gap:16px;}
+.footer-row{flex-direction:column;align-items:flex-start;}
 }
 </style>
+
 </head>
 <body>
 
-<!-- ─── ANIMATED STAR FIELD ─── -->
-<div class="starfield" id="starfield"></div>
-<div class="particles" id="particles"></div>
+<!-- Stars -->
 
-<!-- ─── CREST HEADER ─── -->
-<div class="crest-bar">
-  <div class="crest-left">
-    <img class="crest-logo" src="https://egkhor.com.my/home/wp-content/uploads/2026/02/cropped-IMG_7598.png" alt="EGK Logo">
-    <div class="crest-titles">
-      <div class="crest-main">EGK Microelectronic Solutions Group Sdn. Bhd.</div>
-      <div class="crest-sub">EduTech Division · Kementerian Pendidikan Malaysia · Portal Rasmi Pembentangan 2026</div>
+<div class="stars" id="stars"></div>
+<div class="scan"></div>
+
+<!-- ── MAIN CARD ── -->
+
+<div class="card">
+  <div class="card-accent"></div>
+  <div class="card-body">
+
+```
+<!-- Header -->
+<div class="header-row">
+  <div class="logo-group">
+    <img class="egk-logo"
+      src="https://egkhor.com.my/home/wp-content/uploads/2026/02/cropped-IMG_7598.png"
+      alt="EGK Logo">
+    <div class="logo-text">
+      <div class="logo-name">EGK Microelectronic Solutions Group</div>
+      <div class="logo-div">EduTech Division · Portal Rasmi KPM 2026</div>
     </div>
   </div>
-  <div class="crest-right">
-    <div class="crest-date">Sesi 2026 · Sulit</div>
-    <div class="crest-ref">Ruj: EGK/KPM/PORTAL/2026</div>
+  <img class="seal-img"
+    src="https://egkhor.com.my/home/wp-content/uploads/2026/04/IMG_1094-2.png"
+    alt="EGK Sulit Bersama Kerajaan">
+</div>
+
+<!-- Classification -->
+<div class="classif-row">
+  <div class="classif-badge">🔐 Sulit · Rasmi</div>
+  <div class="classif-badge" style="background:rgba(16,66,176,.12);border-color:rgba(16,66,176,.4);color:#93C5FD;">📋 Notis Pemindahan</div>
+  <span class="classif-ref">Ruj: EGK/KPM/PORTAL/2026 · April 2026</span>
+</div>
+
+<!-- Headline -->
+<span class="notice-icon">🏛️</span>
+<h1 class="notice-title">
+  Portal Ini Telah<br><span>Dipindahkan</span>
+</h1>
+<p class="notice-sub">
+  Bagi memastikan <strong>keselamatan data</strong> dan perlindungan dokumen sulit
+  EGK × KPM yang lebih kukuh, portal rasmi pembentangan ini telah dipindahkan
+  sepenuhnya ke pelayan EGK yang selamat.
+  Sila kemaskini penanda halaman anda.
+</p>
+
+<!-- New URL -->
+<div class="url-box">
+  <span class="url-icon">🔗</span>
+  <div>
+    <div class="url-label">Alamat Baharu Rasmi</div>
+    <div class="url-value">https://egkhor.com.my/gov/kpm</div>
   </div>
 </div>
 
-<!-- ─── STICKY NAV ─── -->
-<nav class="sticky-nav">
-  <div class="sticky-nav-inner">
-    <a href="#hero" class="snav-link active">Laman Utama</a>
-    <a href="#sesi-2026" class="snav-link">Sesi 2026</a>
-    <a href="#tentang" class="snav-link">Tentang EGK</a>
-    <a href="#maskot" class="snav-link">Maskot</a>
-    <a href="#hubungi" class="snav-link">Hubungi</a>
+<!-- Countdown -->
+<div class="countdown-row">
+  <div class="countdown-bar-wrap">
+    <div class="countdown-bar"></div>
   </div>
-</nav>
-
-<!-- ─── HERO ─── -->
-<section id="hero">
-  <div style="position:relative;z-index:2;max-width:860px;margin:0 auto;">
-    <div class="hero-badge">
-      📚 Portal E-Perpustakaan Pembentangan · Kementerian Pendidikan Malaysia
-    </div>
-    <div class="hero-kpm">
-      Penilaian Bahan Pengajaran dan Pembelajaran (PdP) Produk Swasta KPM · Sesi 2026
-    </div>
-    <h1 class="hero-title">
-      EGK × KPM<br><span>Pusat Sumber Pembentangan</span>
-    </h1>
-    <p class="hero-sub">EGK Microelectronic Solutions Group · Bahagian EduTech</p>
-    <p class="hero-desc">
-      Repositori rasmi bagi semua bahan pembentangan, slaid, dokumen sokongan dan rakaman 
-      sesi penilaian antara EGK dan Kementerian Pendidikan Malaysia sepanjang tahun 2026.
-    </p>
-    <div class="hero-mascots">
-      <img src="https://egkhor.com.my/home/wp-content/uploads/2026/04/aida.png" class="mascot-aida" alt="Aida AI Bot">
-      <img src="https://egkhor.com.my/home/wp-content/uploads/2026/04/MUSHI.png" class="mascot-mushi" alt="EGK IP Mushi">
-    </div>
-  </div>
-  <div class="hero-scroll">Tatal ke bawah</div>
-</section>
-
-<!-- ─── STATS STRIP ─── -->
-<div class="stats-strip">
-  <div class="stat-pill">
-    <span class="stat-n">∞</span>
-    <span class="stat-l">Sesi Dijadual 2026</span>
-  </div>
-  <div class="stat-pill">
-    <span class="stat-n">0</span>
-    <span class="stat-l">Selesai</span>
-  </div>
-  <div class="stat-pill">
-    <span class="stat-n">1</span>
-    <span class="stat-l">Sesi Akan Datang</span>
-  </div>
-  <div class="stat-pill">
-    <span class="stat-n">373+</span>
-    <span class="stat-l">Aplikasi EGK</span>
-  </div>
-  <div class="stat-pill">
-    <span class="stat-n">2026</span>
-    <span class="stat-l">Sesi Aktif</span>
-  </div>
-</div>
-<div class="section-divider"></div>
-
-<!-- ─── BOOKSHELF DECORATIVE ─── -->
-<div class="bookshelf-decor">
-  <div class="shelf-row" id="shelfRow"></div>
-  <div class="shelf-base" style="max-width:1100px;margin:0 auto;"></div>
+  <span class="countdown-text">Ubah hala dalam <span id="countdown-num">12</span>s</span>
 </div>
 
-<!-- ─── MEETINGS SECTION ─── -->
-<section id="sesi-2026" class="library-section">
-  <div class="section-wrap">
-    <div class="sec-num reveal">01 · Senarai Pembentangan</div>
-    <h2 class="sec-heading reveal">
-      Sesi Penilaian KPM 2026<br>
-      <span>Semua Bahan Pembentangan Dalam Satu Portal</span>
-    </h2>
-    <p class="sec-lead reveal">
-      Setiap kad di bawah mewakili satu sesi pembentangan rasmi. Klik pada pautan bahan 
-      untuk mengakses slaid, video, dan dokumen sokongan bagi setiap sesi.
-    </p>
+<!-- CTA -->
+<a href="https://egkhor.com.my/gov/kpm" class="cta-btn">
+  Pergi ke Portal Baharu Sekarang <span class="arrow">→</span>
+</a>
 
-    <div class="year-strip reveal">
-      <div class="year-chip">📅 Sesi 2026</div>
-      <div class="year-line"></div>
-      <div style="font-size:.72rem;color:rgba(255,255,255,.3);white-space:nowrap;letter-spacing:.8px;text-transform:uppercase;">Jumlah ~ Sesi · Dikemas Kini Secara Berterusan</div>
-    </div>
+<div class="card-divider"></div>
 
-    <div class="meetings-grid">
-
-      <!-- ══ MEETING 1 ══ -->
-      <div class="meeting-card reveal" style="--card-accent:linear-gradient(90deg,#1042B0,#22C55E);animation-delay:.05s;">
-        <div class="meeting-num-badge">01</div>
-        <div class="meeting-card-inner">
-          <div class="meeting-session-tag tag-active">🔜 Akan Datang</div>
-          <div class="meeting-date-row">
-            <span class="dot"></span>
-            <span>BIL. 1/2026 · April 2026</span>
-          </div>
-          <div class="meeting-title">Pembentangan Pertama<br>EGK AI Adventure — KPM</div>
-          <div class="meeting-desc">
-            Pembentangan- cadangan Integrasi Kurikulum AI untuk Sekolah Rendah yang Selaras dengan Kerangka
-            UNESCO Sesi atas talian — EGK AI Adventure produk EduTech EGK.
-          </div>
-          <div class="meeting-materials">
-            <a href="https://egkhor.github.io/kpmaiadv/" target="_blank" class="mat-chip mat-slides">🎞 Slaid Pembentangan</a>
-            <a href="#" class="mat-chip mat-doc">📄 Minit Mesyuarat (Selepas Mesyuarat)</a>
-          </div>
-        </div>
-        <div class="meeting-card-footer">
-          <span class="meeting-ref">EGK/KPM/01/2026</span>
-          <span class="meeting-arrow">→</span>
-        </div>
-      </div>
-
-      <!-- ══ MEETING 2 ══ -->
-      <div class="meeting-card reveal" style="--card-accent:linear-gradient(90deg,#7C3AED,#1042B0);animation-delay:.1s;">
-        <div class="meeting-num-badge">∞</div>
-        <div class="meeting-card-inner">
-          <div class="meeting-session-tag tag-upcoming">🔜 Akan Datang</div>
-          <div class="meeting-date-row">
-            <span class="dot"></span>
-            <span>BIL. 2/2026 · Tarikh Akan Ditetapkan</span>
-          </div>
-          <div class="meeting-title">Sesi Pembentangan<br>Bil. 2/2026</div>
-          <div class="meeting-desc">
-            Pembentangan susulan dan penilaian lanjut bahan EGK EduTech kepada KPM. 
-            Bahan akan dimuat naik setelah sesi disahkan.
-          </div>
-          <div class="meeting-materials">
-            <span class="mat-chip mat-placeholder">🔒 Slaid — Belum Tersedia</span>
-            <span class="mat-chip mat-placeholder">🔒 Dokumen — Belum Tersedia</span>
-          </div>
-        </div>
-        <div class="meeting-card-footer">
-          <span class="meeting-ref">EGK/KPM/02/2026</span>
-          <span class="meeting-arrow">→</span>
-        </div>
-      </div>
-
-      <!-- ══ MEETING 3 ══ -->
-      <div class="meeting-card reveal" style="--card-accent:linear-gradient(90deg,#0891B2,#1042B0);animation-delay:.15s;">
-        <div class="meeting-num-badge">∞</div>
-        <div class="meeting-card-inner">
-          <div class="meeting-session-tag tag-upcoming">🔜 Akan Datang</div>
-          <div class="meeting-date-row">
-            <span class="dot"></span>
-            <span>BIL. 3/2026 · Tarikh Akan Ditetapkan</span>
-          </div>
-          <div class="meeting-title">Sesi Pembentangan<br>Bil. 3/2026</div>
-          <div class="meeting-desc">
-            Pembentangan sesi ketiga kepada Jawatankuasa Penilaian KPM. 
-            Bahan akan dikemas kini apabila sesi disahkan.
-          </div>
-          <div class="meeting-materials">
-            <span class="mat-chip mat-placeholder">🔒 Slaid — Belum Tersedia</span>
-            <span class="mat-chip mat-placeholder">🔒 Dokumen — Belum Tersedia</span>
-          </div>
-        </div>
-        <div class="meeting-card-footer">
-          <span class="meeting-ref">EGK/KPM/03/2026</span>
-          <span class="meeting-arrow">→</span>
-        </div>
-      </div>
-
-      <!-- ══ MEETING 4 ══ -->
-      <div class="meeting-card reveal" style="--card-accent:linear-gradient(90deg,#D97706,#DC2626);animation-delay:.2s;">
-        <div class="meeting-num-badge">∞</div>
-        <div class="meeting-card-inner">
-          <div class="meeting-session-tag tag-upcoming">🔜 Akan Datang</div>
-          <div class="meeting-date-row">
-            <span class="dot"></span>
-            <span>BIL. 4/2026 · Tarikh Akan Ditetapkan</span>
-          </div>
-          <div class="meeting-title">Sesi Pembentangan<br>Bil. 4/2026</div>
-          <div class="meeting-desc">
-            Sesi penilaian pertengahan tahun. Penilaian mendalam produk EGK termasuk 
-            EGK AI Adventure dan EGK CodeQuest Malaysia.
-          </div>
-          <div class="meeting-materials">
-            <span class="mat-chip mat-placeholder">🔒 Slaid — Belum Tersedia</span>
-            <span class="mat-chip mat-placeholder">🔒 Dokumen — Belum Tersedia</span>
-          </div>
-        </div>
-        <div class="meeting-card-footer">
-          <span class="meeting-ref">EGK/KPM/04/2026</span>
-          <span class="meeting-arrow">→</span>
-        </div>
-      </div>
-
-      <!-- ══ MEETING 5 ══ -->
-      <div class="meeting-card reveal" style="--card-accent:linear-gradient(90deg,#059669,#0891B2);animation-delay:.25s;">
-        <div class="meeting-num-badge">∞</div>
-        <div class="meeting-card-inner">
-          <div class="meeting-session-tag tag-upcoming">🔜 Akan Datang</div>
-          <div class="meeting-date-row">
-            <span class="dot"></span>
-            <span>BIL. 5/2026 · Tarikh Akan Ditetapkan</span>
-          </div>
-          <div class="meeting-title">Sesi Pembentangan<br>Bil. 5/2026</div>
-          <div class="meeting-desc">
-            Sesi susulan penilaian dan laporan kemajuan produk EGK EduTech kepada 
-            Bahagian Sumber dan Teknologi Pendidikan KPM.
-          </div>
-          <div class="meeting-materials">
-            <span class="mat-chip mat-placeholder">🔒 Slaid — Belum Tersedia</span>
-            <span class="mat-chip mat-placeholder">🔒 Dokumen — Belum Tersedia</span>
-          </div>
-        </div>
-        <div class="meeting-card-footer">
-          <span class="meeting-ref">EGK/KPM/05/2026</span>
-          <span class="meeting-arrow">→</span>
-        </div>
-      </div>
-
-      <!-- ══ MEETING 6 ══ -->
-      <div class="meeting-card reveal" style="--card-accent:linear-gradient(90deg,#9333EA,#EC4899);animation-delay:.3s;">
-        <div class="meeting-num-badge">∞</div>
-        <div class="meeting-card-inner">
-          <div class="meeting-session-tag tag-upcoming">🔜 Akan Datang</div>
-          <div class="meeting-date-row">
-            <span class="dot"></span>
-            <span>BIL. 6/2026 · Tarikh Akan Ditetapkan</span>
-          </div>
-          <div class="meeting-title">Sesi Pembentangan<br>Bil. 6/2026</div>
-          <div class="meeting-desc">
-            Pembentangan sesi keenam — penilaian lanjut dan perbincangan projek rintis 
-            kebangsaan EGK bersama KPM.
-          </div>
-          <div class="meeting-materials">
-            <span class="mat-chip mat-placeholder">🔒 Slaid — Belum Tersedia</span>
-            <span class="mat-chip mat-placeholder">🔒 Dokumen — Belum Tersedia</span>
-          </div>
-        </div>
-        <div class="meeting-card-footer">
-          <span class="meeting-ref">EGK/KPM/06/2026</span>
-          <span class="meeting-arrow">→</span>
-        </div>
-      </div>
-
-    </div><!-- /meetings-grid -->
+<!-- Footer -->
+<div class="footer-row">
+  <div class="footer-meta">
+    <strong>EGK Microelectronic Solutions Group Sdn. Bhd.</strong><br>
+    No. Pendaftaran: 202501002992 (1604405-X)<br>
+    8, Lintang Beringin 8, Diamond Valley, 11960 Batu Maung, Penang
   </div>
-</section>
-<div class="section-divider"></div>
+  <div class="security-pill">🛡 Pelayan Selamat EGK</div>
+</div>
+```
 
-<!-- ─── AIDA QUOTE ─── -->
-<div class="aida-quote-wrap">
-  <div style="position:relative;z-index:2;">
-    <img src="https://egkhor.com.my/home/wp-content/uploads/2026/04/aida.png" class="aida-float-big" alt="Aida">
-    <p class="quote-text">
-      "Bersama EGK dan KPM, kita bina generasi Malaysia yang <span>celik AI</span> — 
-      bermula dari sekolah rendah, menuju masa depan digital."
-    </p>
-    <div class="quote-attr">— Aida, Pembantu AI EGK · EduTech Division</div>
   </div>
 </div>
-<div class="section-divider"></div>
 
-<!-- ─── TENTANG EGK ─── -->
-<section id="tentang" class="library-section alt">
-  <div class="section-wrap">
-    <div class="sec-num reveal">02 · Tentang EGK EduTech</div>
-    <h2 class="sec-heading reveal">
-      EGK Microelectronic Solutions Group<br>
-      <span>Bahagian Teknologi Pendidikan</span>
-    </h2>
-    <p class="sec-lead reveal">
-      EGK adalah sebuah kumpulan syarikat Malaysia yang aktif dalam bidang semikonduktor, 
-      pembangunan perisian iOS/Android, kejuruteraan UAV, dan penerbitan buku pendidikan. 
-      Bahagian EduTech EGK memberi tumpuan kepada pembangunan kandungan AI dan digital 
-      untuk sistem pendidikan kebangsaan.
-    </p>
-    <div class="three-col-glass">
-      <div class="info-glass reveal" style="border-top-color:#1042B0;">
-        <div class="info-glass-icon">
-        <img src="https://egkhor.com.my/home/wp-content/uploads/2025/12/egkaiadv.png" alt="AI Icon" />
-        </div>
-        <div class="info-glass-title">EGK AI Adventure</div>
-        <div class="info-glass-body">Buku pendidikan AI pertama Malaysia untuk sekolah rendah (KSSR Tahun 1–6) dalam 3 bahasa. Selaras UNESCO AI Competency Framework 2022.</div>
-      </div>
-      <div class="info-glass reveal" style="border-top-color:#D4A017;">
-        <div class="info-glass-icon">
-        <img src="https://is1-ssl.mzstatic.com/image/thumb/PurpleSource221/v4/af/51/ca/af51cacf-dc16-929b-1675-e36fc0fa880a/Placeholder.mill/400x400bb-75.webp" alt="Computer Icon" />
-        </div>
-        <div class="info-glass-title">EGK CodeQuest Malaysia</div>
-        <div class="info-glass-body">Platform pengajaran kod berasaskan web untuk sekolah Malaysia — selaras KSSR/KSSM MOE, pelaksanaan blok dan Python/JS sebenar.</div>
-      </div>
-      <div class="info-glass reveal" style="border-top-color:#059669;">
-        <div class="info-glass-icon">📱</div>
-        <div class="info-glass-title">373+ Aplikasi</div>
-        <div class="info-glass-body">EGK mempunyai lebih 373 aplikasi aktif di pelbagai platforms termasuk aplikasi SPM, tutor AI Aida, dan pelbagai alat pendidikan digital untuk pelajar Malaysia.</div>
-      </div>
-    </div>
-  </div>
-</section>
-<div class="section-divider"></div>
+<!-- Corner watermark -->
 
-<!-- ─── MASKOT ─── -->
-<section id="maskot" class="library-section">
-  <div class="section-wrap">
-    <div class="sec-num reveal">03 · Maskot EGK EduTech</div>
-    <h2 class="sec-heading reveal">Kenali <span>Maskot Kami</span></h2>
-    <p class="sec-lead reveal">
-      Dua maskot ikonik EGK menemani setiap sesi pembelajaran dan pembentangan kami.
-    </p>
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:32px;margin-top:12px;" class="reveal">
-      <!-- Aida -->
-      <div style="background:linear-gradient(145deg,rgba(125,211,252,.07),rgba(16,66,176,.05));border:1px solid rgba(125,211,252,.15);border-radius:20px;padding:36px 28px;text-align:center;">
-        <img src="https://egkhor.com.my/home/wp-content/uploads/2026/04/aida.png" style="width:clamp(100px,15vw,160px);animation:floatA 4s ease-in-out infinite;filter:drop-shadow(0 16px 32px rgba(125,211,252,.2));margin-bottom:20px;" alt="Aida">
-        <div style="font-family:'Playfair Display',serif;font-size:1.4rem;color:white;margin-bottom:8px;">Aida</div>
-        <div style="font-size:.72rem;color:#7DD3FC;font-weight:800;letter-spacing:1.5px;text-transform:uppercase;margin-bottom:12px;">Pembantu AI EGK</div>
-        <div style="font-size:.82rem;color:rgba(255,255,255,.5);line-height:1.7;">
-          Aida adalah maskot utama EGK yang menjadi wajah kepada semua aplikasi EduTech EGK. 
-          Beliau membantu pelajar belajar dengan lebih menyeronokkan melalui teknologi AI.
-        </div>
-      </div>
-      <!-- Mushi -->
-      <div style="background:linear-gradient(145deg,rgba(212,160,23,.07),rgba(245,158,11,.03));border:1px solid rgba(212,160,23,.18);border-radius:20px;padding:36px 28px;text-align:center;">
-        <img src="https://egkhor.com.my/home/wp-content/uploads/2026/04/MUSHI.png" style="width:clamp(80px,13vw,140px);animation:floatB 4.5s ease-in-out infinite;filter:drop-shadow(0 16px 32px rgba(212,160,23,.25));margin-bottom:20px;" alt="Mushi">
-        <div style="font-family:'Playfair Display',serif;font-size:1.4rem;color:white;margin-bottom:8px;">Mushi</div>
-        <div style="font-size:.72rem;color:var(--gold2);font-weight:800;letter-spacing:1.5px;text-transform:uppercase;margin-bottom:12px;">EGK IP Maskot Eksklusif</div>
-        <div style="font-size:.82rem;color:rgba(255,255,255,.5);line-height:1.7;">
-          Mushi adalah harta intelek (IP) eksklusif EGK — maskot yang mewakili semangat 
-          inovasi, kreativiti, dan kegembiraan dalam setiap produk EGK.
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-<div class="section-divider"></div>
-
-<!-- ─── HUBUNGI ─── -->
-<section id="hubungi" class="library-section alt">
-  <div class="section-wrap">
-    <div class="sec-num reveal">04 · Hubungi Kami</div>
-    <h2 class="sec-heading reveal">Maklumat <span>Hubungan Rasmi</span></h2>
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:28px;margin-top:28px;" class="reveal">
-      <div style="background:linear-gradient(145deg,rgba(255,255,255,.04),rgba(255,255,255,.01));border:1px solid rgba(212,160,23,.2);border-radius:14px;padding:28px 24px;border-left:4px solid var(--gold2);">
-        <div style="font-family:'Playfair Display',serif;font-size:1.1rem;color:white;margin-bottom:14px;">📋 EGK Microelectronic Solutions Group</div>
-        <div style="font-size:.83rem;color:rgba(255,255,255,.6);line-height:2.1;">
-          <strong style="color:#D4A017;">Pengasas & CEO:</strong> Isaac Khor Eng Gian<br>
-          <strong style="color:#D4A017;">No. Pendaftaran:</strong> 202501002992 (1604405-X)<br>
-          <strong style="color:#D4A017;">Tel:</strong> +604-505 9700<br>
-          <strong style="color:#D4A017;">E-mel:</strong> <a href="mailto:admin@egkhor.com.my" style="color:#7DD3FC;">admin@egkhor.com.my</a><br>
-          <strong style="color:#D4A017;">Laman Web:</strong> <a href="https://egkhor.com.my" target="_blank" style="color:#7DD3FC;">www.egkhor.com.my</a>
-        </div>
-      </div>
-      <div style="background:linear-gradient(145deg,rgba(255,255,255,.04),rgba(255,255,255,.01));border:1px solid rgba(255,255,255,.07);border-radius:14px;padding:28px 24px;border-left:4px solid var(--royal);">
-        <div style="font-family:'Playfair Display',serif;font-size:1.1rem;color:white;margin-bottom:14px;">📍 Alamat Surat-menyurat</div>
-        <div style="font-size:.83rem;color:rgba(255,255,255,.6);line-height:2.1;">
-          PO Box 4, PO Bukit Mertajam,<br>
-          14000 Bukit Mertajam,<br>
-          Pulau Pinang, Malaysia<br><br>
-          <strong style="color:#D4A017;">Operasi:</strong><br>
-          8, Lintang Beringin 8,<br>
-          Diamond Valley Industrial Park,<br>
-          11960 Batu Maung, Penang
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ─── FOOTER ─── -->
-<div class="formal-footer">
-  <div class="ff-inner">
-    <div>
-      <div class="ff-title">EGK Microelectronic Solutions Group</div>
-      <div class="ff-line">
-        EduTech Division · Portal Rasmi 2026<br>
-        8, Lintang Beringin 8, Diamond Valley<br>
-        11960 Batu Maung, Penang, Malaysia<br>
-        Co. Reg: 202501002992 (1604405-X)
-      </div>
-    </div>
-    <div>
-    <div class="ff-title">Produk EGK EduTech</div>
-    <div class="ff-line">
-      <a href="https://egkhor.github.io/AiAdv/" target="_blank">EGK AI Adventure (BM/EN/ZH)</a>
-      <a href="https://egkhor.github.io/EGKCodeQuestMyApp/" target="_blank"> EGK CodeQuest Malaysia</a>
-      <a href="https://egkhor.github.io/stem/" target="_blank"> EGK SPM Apps (Add Math, Kimia, Fizik, Bio)</a>
-      <a href="https://egkhor.github.io/antibully/" target="_blank"> EGK Smart Character Education</a>
-      <a href="https://egkhor.github.io/antibully/" target="_blank"> EGK Anti-Bully Careline</a>
-    </div>
-    </div>
-    <div>
-      <div class="ff-title">Hubungi Kami</div>
-      <div class="ff-line">
-        📞 +604-505 9700<br>
-        ✉️ <a href="mailto:admin@egkhor.com.my" style="color:rgba(255,255,255,.45);">admin@egkhor.com.my</a>
-        🌐 <a href="https://egkhor.com.my" target="_blank" style="color:rgba(255,255,255,.45);">www.egkhor.com.my</a>
-        <a href="https://apps.apple.com/my/developer/isaac-eng-gian-khor/id1808933315" target="_blank" style="color:#D4A017;font-weight:700;">🍎 App Store EGK</a>
-      </div>
-    </div>
-  </div>
-  <div class="ff-bottom">
-    <span>© 2026 EGK Microelectronic Solutions Group Sdn. Bhd. · Semua hak terpelihara</span>
-    <span style="color:#D4A017;">📚 EGK × KPM — Membina Malaysia Digital Bermula dari Sekolah</span>
-  </div>
-</div>
+<div class="watermark">EGK/KPM/PORTAL/2026 · SULIT</div>
 
 <script>
-/* ─── GENERATE STARS ─── */
-const sf = document.getElementById('starfield');
-for(let i=0;i<160;i++){
-  const s=document.createElement('div');
-  s.className='star';
-  const sz=Math.random()*2.5+.5;
-  s.style.cssText=`
+/* ── Stars ── */
+const container = document.getElementById('stars');
+for(let i = 0; i < 140; i++){
+  const s = document.createElement('div');
+  s.className = 'star';
+  const sz = Math.random() * 2.2 + .4;
+  s.style.cssText = `
     width:${sz}px;height:${sz}px;
     left:${Math.random()*100}%;top:${Math.random()*100}%;
-    --d:${2+Math.random()*5}s;
-    --delay:-${Math.random()*5}s;
-    opacity:${Math.random()*.6+.1};
+    --d:${2 + Math.random()*5}s;
+    --dl:-${Math.random()*6}s;
+    opacity:${Math.random()*.5+.1};
   `;
-  sf.appendChild(s);
+  container.appendChild(s);
 }
 
-/* ─── GENERATE PARTICLES ─── */
-const pc = document.getElementById('particles');
-const pcColors = ['rgba(212,160,23,.4)','rgba(125,211,252,.3)','rgba(16,66,176,.4)','rgba(34,197,94,.25)'];
-for(let i=0;i<18;i++){
-  const p=document.createElement('div');
-  p.className='particle';
-  const sz=Math.random()*60+20;
-  p.style.cssText=`
-    width:${sz}px;height:${sz}px;
-    left:${Math.random()*100}%;
-    background:radial-gradient(circle,${pcColors[Math.floor(Math.random()*pcColors.length)]},transparent);
-    --pd:${15+Math.random()*20}s;
-    --pdelay:-${Math.random()*20}s;
-    --dx:${(Math.random()-0.5)*120}px;
-  `;
-  pc.appendChild(p);
-}
-
-/* ─── BOOKSHELF ─── */
-const shelfColors = [
-  '#1042B0','#0A1F5C','#7C3AED','#059669','#D97706','#DC2626',
-  '#0891B2','#9333EA','#065F46','#92400E','#1E40AF','#6D28D9',
-  '#047857','#B45309','#1D4ED8','#7C2D12','#0C4A6E','#3B0764',
-  '#14532D','#78350F','#1E3A5F','#4C1D95','#064E3B','#92400E',
-  '#1A1A2E','#D4A017','#1565C0','#2D1B69'
-];
-const shelfLabels = ['AI','KPM','EGK','STEM','BM','EDU','ICT','CODE','AI','KPM','EGK','MATH','SCI','ART','TECH','BIO','PHY','CHEM','AI','EDU','CODE','STEM','BM','KPM','EGK','AI','TECH','STEM'];
-const shelf = document.getElementById('shelfRow');
-const count = Math.min(shelfLabels.length, shelfColors.length);
-for(let i=0;i<count;i++){
-  const b=document.createElement('div');
-  b.className='book-spine';
-  const ht = 110 + Math.random()*60;
-  b.style.cssText=`background:linear-gradient(180deg,${shelfColors[i]},${shelfColors[(i+3)%count]});height:${ht}px;width:${22+Math.floor(Math.random()*16)}px;align-self:flex-end;`;
-  b.innerHTML=`<span>${shelfLabels[i]}</span>`;
-  b.title=shelfLabels[i];
-  shelf.appendChild(b);
-}
-
-/* ─── STICKY NAV ACTIVE ─── */
-const sections=document.querySelectorAll('section[id]');
-const navLinks=document.querySelectorAll('.snav-link');
-const observer=new IntersectionObserver(entries=>{
-  entries.forEach(e=>{
-    if(e.isIntersecting){
-      navLinks.forEach(l=>{
-        l.classList.toggle('active',l.getAttribute('href')==='#'+e.target.id);
-      });
-    }
-  });
-},{threshold:.25});
-sections.forEach(s=>observer.observe(s));
-
-/* ─── SCROLL REVEAL ─── */
-const revObs=new IntersectionObserver(entries=>{
-  entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');revObs.unobserve(e.target);}});
-},{threshold:.08});
-document.querySelectorAll('.reveal').forEach(el=>revObs.observe(el));
-
-/* ─── STAGGERED CARD REVEAL ─── */
-const cardObs=new IntersectionObserver(entries=>{
-  entries.forEach((e,i)=>{
-    if(e.isIntersecting){
-      setTimeout(()=>e.target.classList.add('visible'),i*70);
-      cardObs.unobserve(e.target);
-    }
-  });
-},{threshold:.05});
-document.querySelectorAll('.meeting-card').forEach(c=>cardObs.observe(c));
+/* ── Countdown ── */
+let secs = 12;
+const el = document.getElementById('countdown-num');
+const timer = setInterval(() => {
+  secs--;
+  el.textContent = secs;
+  if(secs <= 0){
+    clearInterval(timer);
+    window.location.href = 'https://egkhor.com.my/gov/kpm';
+  }
+}, 1000);
 </script>
+
 </body>
 </html>
